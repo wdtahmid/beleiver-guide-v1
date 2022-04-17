@@ -24,7 +24,12 @@ const SignUp = () => {
                             <input className='w-full p-3 rounded-md border-b-2 border-yellow-400 text-black' type="password" name="password" id="password" placeholder='Your Password' required />
                         </div>
                     </form>
-                    
+
+                </div>
+                <div className="divider grid grid-cols-3 items-center my-3 text-white">
+                    <div className=''><hr /></div>
+                    <div>OR</div>
+                    <div><hr /></div>
                 </div>
             </div>
         </div>
