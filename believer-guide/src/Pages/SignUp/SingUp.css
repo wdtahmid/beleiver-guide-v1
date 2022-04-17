@@ -1,5 +1,8 @@
 .signup-container {
-    background-image: url("../../img/background/signup-bg.jpg");
+    background-image: url("../../img/background/signupbg.jpg");
     background-size: cover;
     background-position: 0 0;
+    position: relative;
+    background-blend-mode: lighten;
+    background-color: rgba(7, 69, 146, 0.816);
 }
