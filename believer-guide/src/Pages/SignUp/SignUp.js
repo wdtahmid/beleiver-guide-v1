@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SingUp.css';
 import googleIcon from '../../img/incons/google.png';
 import facebookIcon from '../../img/incons/facebook.png';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../hooks/useFirebase/useFirebase';
 
 const SignUp = () => {
 
+    const [passError, setPassError] = useState('');
+    const [formError] = useState('User already existing');
+    const navigate = useNavigate();
+
+
     const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+        createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
+    if (user) {
+        navigate('/checkout')
+    }
 
-    const handleSignUp = (event) => {
+    if (loading) {
+        return (
+            <p>Checking...</p>
+        );
+    }
+
+    const handleSignUp = async (event) => {
         event.preventDefault();
 
-        //const useraName = event.target.name.value;
-        const useraEmail = event.target.email.value;
-        const useraPassword = event.target.password.value;
+        const userEmail = event.target.email.value;
+        const userPassword = event.target.password.value;
 
-        createUserWithEmailAndPassword(useraEmail, useraPassword);
+        if (userPassword.length < 8) {
+            setPassError('Password should be 8 character or more');
+            return;
+        }
+        await createUserWithEmailAndPassword(userEmail, userPassword);
+
+        event.target.email.value = '';
+        event.target.password.value = '';
 
     }
 
@@ -31,20 +48,22 @@ const SignUp = () => {
         <div className="signup-container vh-full flex flex-col justify-center items-center h-screen">
             <div className="signup md:w-96 mx-auto">
                 <h2 className='text-4xl text-white mb-5'>Please Register</h2>
-                <div className="form w-full bg-black bg-opacity-20 p-5 rounded-md">
+                <div className="form w-full bg-black bg-opacity-50 p-5 rounded-md">
                     <form onSubmit={handleSignUp} className='flex flex-col gap-3'>
                         <div className="input-group">
                             <input className='w-full p-3 rounded-md border-2 border-yellow-400 text-black' type="text" name="name" id="name" placeholder='Your Name Here' />
                         </div>
                         <div className="input-group">
                             <input className='w-full p-3 rounded-md border-b-2 border-yellow-400 text-black' type="email" name="email" id="email" placeholder='Your Email Here' required />
+                            <p className='text-red-600 bg-slate-900 rounded-md'>{error ? formError : ''}</p>
                         </div>
                         <div className="input-group">
                             <input className='w-full p-3 rounded-md border-b-2 border-yellow-400 text-black' type="password" name="password" id="password" placeholder='Your Password' required />
+                            <p className='text-red-600 bg-slate-900 rounded-md'>{passError ? passError : ''}</p>
                         </div>
                         <button className='bg-black text-white uppercase py-3 rounded-md hover:bg-blue-900 hover:text-white' type="submit">Register</button>
                     </form>
-
+                    <p className='text-white mt-1'>Already have an account? <Link to='/signin'>Login Here</Link></p>
                 </div>
                 <div className="divider grid grid-cols-3 items-center my-3 text-white">
                     <div className=''><hr /></div>
