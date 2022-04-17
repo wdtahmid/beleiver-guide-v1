@@ -1,5 +1,7 @@
 import React from 'react';
-import './SingUp.css'
+import './SingUp.css';
+import googleIcon from '../../img/incons/google.png';
+import facebookIcon from '../../img/incons/facebook.png';
 
 const SignUp = () => {
 
@@ -30,6 +32,10 @@ const SignUp = () => {
                     <div className=''><hr /></div>
                     <div>OR</div>
                     <div><hr /></div>
+                </div>
+                <div className="social-signup bg-white bg-opacity-40 rounded-md flex items-center justify-center gap-3 py-2">
+                    <button><img className='h-8 w-8' src={googleIcon} alt="" /></button>
+                    <button><img className='h-8 w-8' src={facebookIcon} alt="" /></button>
                 </div>
             </div>
         </div>
