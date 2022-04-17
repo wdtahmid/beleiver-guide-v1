@@ -2,17 +2,34 @@ import React from 'react';
 import './SingUp.css';
 import googleIcon from '../../img/incons/google.png';
 import facebookIcon from '../../img/incons/facebook.png';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../hooks/useFirebase/useFirebase';
 
 const SignUp = () => {
 
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
 
     const handleSignUp = (event) => {
         event.preventDefault();
+
+        //const useraName = event.target.name.value;
+        const useraEmail = event.target.email.value;
+        const useraPassword = event.target.password.value;
+
+        createUserWithEmailAndPassword(useraEmail, useraPassword);
+
     }
+
+
     return (
-        <div className="signup-container vh-full flex flex-col justify-items-start items-center h-screen">
-            <div className="signup pt-20 w-96 mx-auto">
+        <div className="signup-container vh-full flex flex-col justify-center items-center h-screen">
+            <div className="signup md:w-96 mx-auto">
                 <h2 className='text-4xl text-white mb-5'>Please Register</h2>
                 <div className="form w-full bg-black bg-opacity-20 p-5 rounded-md">
                     <form onSubmit={handleSignUp} className='flex flex-col gap-3'>
@@ -25,6 +42,7 @@ const SignUp = () => {
                         <div className="input-group">
                             <input className='w-full p-3 rounded-md border-b-2 border-yellow-400 text-black' type="password" name="password" id="password" placeholder='Your Password' required />
                         </div>
+                        <button className='bg-black text-white uppercase py-3 rounded-md hover:bg-blue-900 hover:text-white' type="submit">Register</button>
                     </form>
 
                 </div>
