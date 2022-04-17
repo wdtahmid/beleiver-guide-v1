@@ -6,6 +6,8 @@ import Home from './Pages/Home/Home/Home';
 import Blog from './Pages/Blog/Blog';
 import About from './Pages/About/About';
 import SignIn from './Pages/SignIn/SignIn';
+import Footer from './Pages/Shared/Footer/Footer';
+import CheckOut from './Pages/CheckOut/CheckOut';
 
 function App() {
   return (
@@ -15,8 +17,10 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/Blog' element={<Blog></Blog>}></Route>
         <Route path='/About' element={<About></About>}></Route>
+        <Route path='/service/:serviceId' element={<CheckOut></CheckOut>}></Route>
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
