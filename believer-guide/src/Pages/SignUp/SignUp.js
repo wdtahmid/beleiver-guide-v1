@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SingUp.css';
 import googleIcon from '../../img/incons/google.png';
 import facebookIcon from '../../img/incons/facebook.png';
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../hooks/useFirebase/useFirebase';
 

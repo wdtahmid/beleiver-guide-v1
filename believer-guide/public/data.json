@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "serviceName": "Colorful Berlin",
-        "desc": "AdventureBackpackingBudget Travels",
+        "serviceName": "",
+        "desc": "Adventure Backpacking Budget Travels",
         "price": "2000",
         "days": "5",
         "img": ""
@@ -10,7 +10,7 @@
     {
         "id": 2,
         "serviceName": "A week in Venice",
-        "desc": "BackpackingBudget TravelsWeekend",
+        "desc": "Backpacking Budget TravelsWeekend",
         "price": "1500",
         "days": "3",
         "img": ""

@@ -10,9 +10,11 @@ const CheckOut = () => {
     const bookedItem = services?.find(service => service.id === id);
 
     return (
-        <div className="checkoute-container">
+        <div className="checkoute-container w-4/5 mx-auto text-left py-16">
+            <h1 className='text-4xl'>Service Detials</h1>
             <div className="checkout grid grid-cols-2">
                 <div className='booked-item-details'>
+                    <img src={bookedItem?.img} alt="" />
                     <p>{bookedItem?.serviceName}</p>
                 </div>
                 <div className="checkout-form">

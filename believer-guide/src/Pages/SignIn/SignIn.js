@@ -38,9 +38,6 @@ const SignIn = () => {
         event.target.password.value = '';
 
     }
-    const goToSignIn = () => {
-        navigate('/signin')
-    }
     return (
         <div className="signup-container vh-full flex flex-col justify-center items-center h-screen">
             <div className="signup md:w-96 mx-auto">
