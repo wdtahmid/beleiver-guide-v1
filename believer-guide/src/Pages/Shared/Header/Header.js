@@ -3,6 +3,14 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../hooks/useFirebase/useFirebase';
+import { Dropdown } from 'rsuite';
+import 'rsuite/styles/index.less';
+
+const styles = {
+    position: "absolute",
+    textAlign: "left"
+
+};
 
 const Header = () => {
     const navigate = useNavigate();
@@ -11,6 +19,9 @@ const Header = () => {
         signOut(auth);
         navigate('/signin')
     }
+    console.log(user);
+
+
 
     return (
         <header className='header-container bg-blue-600 py-4'>
@@ -23,9 +34,18 @@ const Header = () => {
 
                     {user
                         ?
-                        <div>
-                            <button onClick={logOut}>Sign Out</button>
-                            <Link className='ml-3' to='/profile'>Profile</Link>
+                        <div className='flex gap-3 items-center'>
+
+                            {user.photoURL ? <img className='w-7 h-7 rounded-full' src={user.photoURL} alt="" /> : ''}
+
+                            <Dropdown title="Account">
+                                <div style={styles} className='bg-blue-600 text-white tex-left p-2'>
+                                    <Dropdown.Item><button onClick={logOut}>Sign Out</button></Dropdown.Item>
+                                    <Dropdown.Item><Link className='ml-3' to='/profile'>Profile</Link></Dropdown.Item>
+                                </div>
+                            </Dropdown>
+
+
                         </div>
                         :
                         <div>

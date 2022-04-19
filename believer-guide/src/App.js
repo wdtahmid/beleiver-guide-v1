@@ -12,6 +12,7 @@ import SignUp from './Pages/SignUp/SignUp';
 import RequireAuth from './hooks/RequireAuth/RequireAuth';
 import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
 import Profile from './Profile/Profile';
+import PageNotFound from './Pages/PageNotFound/PageNotFound'
 
 function App() {
   return (
@@ -31,11 +32,12 @@ function App() {
 
         <Route path='profile' element={
           <RequireAuth>
-          <Profile></Profile>
+            <Profile></Profile>
           </RequireAuth>
         }></Route>
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='signup' element={<SignUp></SignUp>}></Route>
+        <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

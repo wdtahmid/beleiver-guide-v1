@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../hooks/useFirebase/useFirebase';
 
@@ -24,7 +24,11 @@ const SignIn = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [signInWithGoogle, googleError] = useSignInWithGoogle(auth)
 
+    if (googleError) {
+        return 'You are not registerd. Please register first.'
+    }
 
     const handleSignIn = async (event) => {
         event.preventDefault();
@@ -67,7 +71,7 @@ const SignIn = () => {
                     <div><hr /></div>
                 </div>
                 <div className="social-signup bg-white bg-opacity-40 rounded-md flex items-center justify-center gap-3 py-2">
-                    <button><img className='h-8 w-8' src={googleIcon} alt="" /></button>
+                    <button onClick={() => signInWithGoogle()}><img className='h-8 w-8' src={googleIcon} alt="" /></button>
                     <button><img className='h-8 w-8' src={facebookIcon} alt="" /></button>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SingUp.css';
 import googleIcon from '../../img/incons/google.png';
 import facebookIcon from '../../img/incons/facebook.png';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../hooks/useFirebase/useFirebase';
 
@@ -14,18 +14,26 @@ const SignUp = () => {
 
 
     const [
-        createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+        createUserWithEmailAndPassword,
+        userPassword,
+        loadingPassword,
+        errorPassword] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    if (user) {
-        navigate('/checkout')
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+
+    if (userPassword || userGoogle) {
+        navigate('/profile')
     }
 
-    if (loading) {
+    if (loadingPassword || loadingGoogle) {
         return (
             <p>Checking...</p>
         );
     }
 
+    if (errorGoogle) {
+        return 'Error with google signin'
+    }
     const handleSignUp = async (event) => {
         event.preventDefault();
 
@@ -44,6 +52,7 @@ const SignUp = () => {
     }
 
 
+
     return (
         <div className="signup-container vh-full flex flex-col justify-center items-center h-screen">
             <div className="signup md:w-96 mx-auto">
@@ -55,7 +64,7 @@ const SignUp = () => {
                         </div>
                         <div className="input-group">
                             <input className='w-full p-3 rounded-md border-b-2 border-yellow-400 text-black' type="email" name="email" id="email" placeholder='Your Email Here' required />
-                            <p className='text-red-600 bg-slate-900 rounded-md'>{error ? formError : ''}</p>
+                            <p className='text-red-600 bg-slate-900 rounded-md'>{errorPassword ? formError : ''}</p>
                         </div>
                         <div className="input-group">
                             <input className='w-full p-3 rounded-md border-b-2 border-yellow-400 text-black' type="password" name="password" id="password" placeholder='Your Password' required />
@@ -71,7 +80,7 @@ const SignUp = () => {
                     <div><hr /></div>
                 </div>
                 <div className="social-signup bg-white bg-opacity-40 rounded-md flex items-center justify-center gap-3 py-2">
-                    <button><img className='h-8 w-8' src={googleIcon} alt="" /></button>
+                    <button onClick={() => signInWithGoogle()}><img className='h-8 w-8' src={googleIcon} alt="" /></button>
                     <button><img className='h-8 w-8' src={facebookIcon} alt="" /></button>
                 </div>
             </div>
