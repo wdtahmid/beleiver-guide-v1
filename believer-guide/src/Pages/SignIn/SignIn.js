@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../hooks/useFirebase/useFirebase';
 
 import googleIcon from '../../img/incons/google.png';
@@ -8,10 +8,16 @@ import facebookIcon from '../../img/incons/facebook.png';
 
 const SignIn = () => {
     const [user] = useAuthState(auth);
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || '/';
+    if (user) {
+        navigate(from, { replace: true });
+    }
 
     const [passError, setPassError] = useState('');
     const [formError] = useState('User already existing');
-    const navigate = useNavigate();
 
     const [
         signInWithEmailAndPassword,
@@ -19,9 +25,7 @@ const SignIn = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
 
-    if (user) {
-        navigate('/checkout')
-    }
+
     const handleSignIn = async (event) => {
         event.preventDefault();
 

@@ -11,6 +11,7 @@ import CheckOut from './Pages/CheckOut/CheckOut';
 import SignUp from './Pages/SignUp/SignUp';
 import RequireAuth from './hooks/RequireAuth/RequireAuth';
 import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
+import Profile from './Profile/Profile';
 
 function App() {
   return (
@@ -28,7 +29,11 @@ function App() {
           </RequireAuth>}>
         </Route>
 
-
+        <Route path='profile' element={
+          <RequireAuth>
+          <Profile></Profile>
+          </RequireAuth>
+        }></Route>
         <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='signup' element={<SignUp></SignUp>}></Route>
       </Routes>

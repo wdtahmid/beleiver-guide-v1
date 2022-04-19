@@ -3,9 +3,11 @@ import { Navigate, useLocation } from "react-router-dom";
 import auth from "../useFirebase/useFirebase";
 
 const RequireAuth = ({ children }) => {
-    let [user] = useAuthState(auth);
+    let [user, loading] = useAuthState(auth);
     let location = useLocation();
-
+    if (loading) {
+        return 'Loading...';
+    }
     if (!user) {
         // Redirect them to the /login page, but save the current location they were
         // trying to go to when they were redirected. This allows us to send them

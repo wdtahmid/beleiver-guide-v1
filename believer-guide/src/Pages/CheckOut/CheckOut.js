@@ -2,10 +2,10 @@ import React from 'react';
 
 const CheckOut = () => {
     return (
-        <div>
-            <div className="checkout-form">
+        <div className='w-2/4 mx-auto'>
+            <div className="checkout-form py-32">
                 <h2 className='font-bold text-2xl mb-3'>Checkout Form</h2>
-                <form className='flex flex-col gap-3 w-3/5'>
+                <form className='flex flex-col gap-3 w-3/5 mx-auto'>
                     <div className="form-group">
                         <div className="form-sub-group flex">
                             <input className='p-2 border border-slate-500 rounded-md w-1/2' type="text" name="fname" id="fname" placeholder='First Name' />

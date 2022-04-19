@@ -23,7 +23,10 @@ const Header = () => {
 
                     {user
                         ?
-                        <button onClick={logOut}>Sign Out</button>
+                        <div>
+                            <button onClick={logOut}>Sign Out</button>
+                            <Link className='ml-3' to='/profile'>Profile</Link>
+                        </div>
                         :
                         <div>
                             <Link to='signin'>Sign In</Link>
