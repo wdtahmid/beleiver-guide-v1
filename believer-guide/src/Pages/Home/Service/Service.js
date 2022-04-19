@@ -15,7 +15,7 @@ const Service = ({ service }) => {
             <p>{desc}</p>
             <div>
                 <p>Days: {days} </p>
-                <p>Price: {price} </p>
+                <p>Price: ${price} </p>
             </div>
             <button onClick={() => handleCheckOut(id)} className='bg-blue-600 py-1 px-3 text-white uppercase font-semibold'>book this</button>
         </div>

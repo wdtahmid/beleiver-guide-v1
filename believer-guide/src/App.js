@@ -10,6 +10,7 @@ import Footer from './Pages/Shared/Footer/Footer';
 import CheckOut from './Pages/CheckOut/CheckOut';
 import SignUp from './Pages/SignUp/SignUp';
 import RequireAuth from './hooks/RequireAuth/RequireAuth';
+import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/Blog' element={<Blog></Blog>}></Route>
         <Route path='/About' element={<About></About>}></Route>
-        <Route path='/service/:serviceId' element={<CheckOut></CheckOut>}></Route>
+        <Route path='/service/:serviceId' element={<ServiceDetails></ServiceDetails>}></Route>
 
         <Route path='checkout' element={
           <RequireAuth>

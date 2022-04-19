@@ -26,7 +26,7 @@ const Header = () => {
                         <button onClick={logOut}>Sign Out</button>
                         :
                         <div>
-                            <Link to='signup'>Sign Up</Link>
+                            <Link to='signin'>Sign In</Link>
                         </div>}
 
                 </nav>
