@@ -1,0 +1,7 @@
+.banner-container {
+    background-image: url("../../../img/background/signupbg.jpg") !important;
+    background-size: cover;
+    background-position: 0 0;
+    position: relative;
+    background-blend-mode: lighten;
+}

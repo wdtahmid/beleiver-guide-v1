@@ -2,7 +2,7 @@ import React from 'react';
 
 const CheckOut = () => {
     return (
-        <div className='w-2/4 mx-auto'>
+        <div className='px-2 w-full md:w-2/4 mx-auto'>
             <div className="checkout-form py-32">
                 <h2 className='font-bold text-2xl mb-3'>Checkout Form</h2>
                 <form className='flex flex-col gap-3 w-3/5 mx-auto'>
